@@ -1,0 +1,7 @@
+红旗远程MySQL
+181.167.100.152		ip
+ecos_ope  			用户名     
+ope_is_readonly		密码
+ecos  				数据库名
+
+todesk：714278218/643647

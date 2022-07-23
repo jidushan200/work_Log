@@ -1,0 +1,55 @@
+/*
+SQLyog Community v13.1.4  (64 bit)
+MySQL - 8.0.15 
+*********************************************************************
+*/
+/*!40101 SET NAMES utf8 */;
+
+create table `station_job` (
+	`id_station` int (11),
+	`name_station` varchar (120),
+	`type` varchar (120),
+	`id_position` int (11),
+	`name_position` varchar (120),
+	`job` int (11),
+	`prg` varchar (120),
+	`ok` varchar (120),
+	`nok` varchar (120),
+	`knr` varchar (120),
+	`vin` varchar (120),
+	`code` varchar (120),
+	`torque_min` varchar (60),
+	`torque_max` varchar (60),
+	`torque_target` varchar (60),
+	`angle_min` varchar (60),
+	`angle_max` varchar (60),
+	`angle_target` varchar (60),
+	`time_min` varchar (60),
+	`time_max` varchar (60),
+	`time_target` varchar (60),
+	`timestamp` timestamp 
+); 
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70101','车门拧紧','0','1','左后门拧紧','1','1','1','2','0','1115202207160007','','36','41','38','0','5000','0','0','10','5','2022-07-18 10:30:06');
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70101','车门拧紧','0','1','左后门拧紧','2','1','1','2','0','1115202207160007','','36','41','38','0','5000','0','0','10','5','2022-07-18 10:30:06');
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70101','车门拧紧','0','1','左后门拧紧','3','1','1','2','0','1115202207160007','','36','41','38','0','5000','0','0','10','5','2022-07-18 10:30:06');
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70101','车门拧紧','0','1','左后门拧紧','4','1','1','2','0','1115202207160007','','36','41','38','0','5000','0','0','10','5','2022-07-18 10:30:06');
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70101','车门拧紧','0','1','左后门拧紧','5','1','1','2','0','1115202207160007','','36','41','38','0','5000','0','0','10','5','2022-07-18 10:30:06');
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70101','车门拧紧','0','2','左后门拧紧','1','1','1','2','0','1115202207160007','','36','54','45','0','5000','0','0','10','5','2022-07-18 10:30:06');
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70102','车门拧紧','0','1','右后门拧紧','1','1','1','2','0','1116202207160007','','36','41','38','0','5000','0','0','10','5','2022-07-18 10:32:34');
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70102','车门拧紧','0','1','右后门拧紧','2','1','1','2','0','1116202207160007','','36','41','38','0','5000','0','0','10','5','2022-07-18 10:32:34');
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70102','车门拧紧','0','1','右后门拧紧','3','1','1','2','0','1116202207160007','','36','41','38','0','5000','0','0','10','5','2022-07-18 10:32:34');
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70102','车门拧紧','0','1','右后门拧紧','4','1','1','2','0','1116202207160007','','36','41','38','0','5000','0','0','10','5','2022-07-18 10:32:34');
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70102','车门拧紧','0','1','右后门拧紧','5','1','1','2','0','1116202207160007','','36','41','38','0','5000','0','0','10','0','2022-07-18 10:32:34');
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70102','车门拧紧','0','2','右后门拧紧','1','1','1','2','0','1116202207160007','','36','54','45','0','5000','0','0','10','5','2022-07-18 10:32:34');
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70103','车门拧紧','0','1','左前门拧紧','1','1','1','2','0','1113202207160007','','36','41','38','0','5000','0','0','10','5','2022-07-18 10:31:17');
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70103','车门拧紧','0','1','左前门拧紧','2','1','1','2','0','1113202207160007','','36','41','38','0','5000','0','0','10','5','2022-07-18 10:31:17');
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70103','车门拧紧','0','1','左前门拧紧','3','1','1','2','0','1113202207160007','','36','41','38','0','5000','0','0','10','5','2022-07-18 10:31:17');
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70103','车门拧紧','0','1','左前门拧紧','4','1','1','2','0','1113202207160007','','36','41','38','0','5000','0','0','10','5','2022-07-18 10:31:17');
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70103','车门拧紧','0','2','左前门拧紧','1','1','1','2','0','1113202207160007','','36','54','45','0','5000','0','0','10','5','2022-07-18 10:31:17');
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70103','车门拧紧','0','2','左前门拧紧','2','1','1','2','0','1113202207160007','','36','54','45','0','5000','0','0','10','5','2022-07-18 10:31:17');
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70104','车门拧紧','0','1','右前门拧紧','1','1','1','2','0','1114202207160007','','36','41','38','0','5000','0','0','10','5','2022-07-18 10:33:28');
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70104','车门拧紧','0','1','右前门拧紧','2','1','1','2','0','1114202207160007','','36','41','38','0','5000','0','0','10','5','2022-07-18 10:33:28');
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70104','车门拧紧','0','1','右前门拧紧','3','1','1','2','0','1114202207160007','','36','41','38','0','5000','0','0','10','5','2022-07-18 10:33:28');
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70104','车门拧紧','0','1','右前门拧紧','4','1','1','2','0','1114202207160007','','36','41','38','0','5000','0','0','10','5','2022-07-18 10:33:28');
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70104','车门拧紧','0','2','右前门拧紧','1','1','1','2','0','1114202207160007','','36','54','45','0','5000','0','0','10','5','2022-07-18 10:33:28');
+insert into `station_job` (`id_station`, `name_station`, `type`, `id_position`, `name_position`, `job`, `prg`, `ok`, `nok`, `knr`, `vin`, `code`, `torque_min`, `torque_max`, `torque_target`, `angle_min`, `angle_max`, `angle_target`, `time_min`, `time_max`, `time_target`, `timestamp`) values('70104','车门拧紧','0','2','右前门拧紧','2','1','1','2','0','1114202207160007','','36','54','45','0','5000','0','0','10','5','2022-07-18 10:33:28');
