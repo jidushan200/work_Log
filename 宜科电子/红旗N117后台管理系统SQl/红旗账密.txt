@@ -4,4 +4,6 @@ ecos_ope  			用户名
 ope_is_readonly		密码
 ecos  				数据库名
 
-todesk：714278218/643647
+todesk：账号：714278218
+		密码：643647
+		远程电脑锁屏密码：jyb-2021
