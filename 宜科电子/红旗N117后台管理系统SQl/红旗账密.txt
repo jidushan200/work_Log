@@ -7,3 +7,15 @@ ecos  				数据库名
 todesk：账号：714278218
 		密码：643647
 		远程电脑锁屏密码：jyb-2021
+		
+红旗Andon L平台：
+地板岛远程：
+E:\ELCO_Report
+ip：181.167.10.65
+密码：hongqi666
+
+测量岛远程：
+C:\Users\Administrator\Desktop\Report
+ip：181.167.60.65
+密码：hongqi666
+桌面：Report
