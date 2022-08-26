@@ -1,7 +1,7 @@
 红旗远程MySQL
 181.167.100.152		ip
 ecos_ope  			用户名     
-ope_is_readonly		密码
+ope_is_readonly		密码M
 ecos  				数据库名
 
 todesk：账号：714278218
@@ -12,6 +12,7 @@ todesk：账号：714278218
 地板岛远程：
 E:\ELCO_Report
 ip：181.167.10.65
+administrator
 密码：hongqi666
 
 测量岛远程：
