@@ -11,12 +11,15 @@ todesk：账号：714278218
 红旗Andon L平台：
 地板岛远程：
 E:\ELCO_Report
+ \\24611PRCP\ELCO_Report
 ip：181.167.10.65
 administrator
 密码：hongqi666
 
 测量岛远程：
 C:\Users\Administrator\Desktop\Report
+\\24612PRCP\Report
+
 ip：181.167.60.65
 密码：hongqi666
 桌面：Report
