@@ -8,8 +8,14 @@ todesk：账号：714278218
 		密码：643647
 		远程电脑锁屏密码：jyb-2021
 		
+大屏工控机：
+有线ip：181.167.100.151
+无线ip：181.167.100.20
+密码：elco/elco2019
+		
 红旗Andon L平台：
-地板岛远程：
+地板岛远程 ：
+UB
 E:\ELCO_Report
  \\24611PRCP\ELCO_Report
 ip：181.167.10.65
@@ -17,6 +23,7 @@ administrator
 密码：hongqi666
 
 测量岛远程：
+MB22
 C:\Users\Administrator\Desktop\Report
 \\24612PRCP\Report
 
