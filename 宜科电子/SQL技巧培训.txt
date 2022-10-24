@@ -385,6 +385,10 @@ EXEC (@sql_str)
 select * from temptable
 drop table temptable
 
+	IF @targetnumber < @number
+		Begin
+         RAISERROR ('实际数量不可大于设定数量!', 16, 1)
+		End
 
 
 计算字段创建与使用：
@@ -392,4 +396,31 @@ drop table temptable
 直接使用SMSS的数据表编辑界面建立计算字段。
 
 SQL类型转换
+例：获取某日期的数据，比如获取出生日期为2000-01-01以后的数据，且获得的日期为日期格式。假设表名为table，数据的字段为name，age，country，出生日期的字段是born,born字段储存的是字符串的日期比如“2000-02-23”，SQL支持直接用于比较。
+select name,age,country,
+cast(born as date) as born 
+from table
+where born >= "2000-01-01"
 
+例如：将“678”转化为数值型数据，并与123相加进行数学运算。
+ACCESS:
+
+	SELECT CINT('678') + 123;
+或
+
+	SELECT CLNG('678') + 123;
+	
+SQLSERVER：
+
+	SELECT CAST('678' AS INT) + 123;
+或
+
+	SELECT CONVERT(INT, '678') + 123;
+ORACLE：
+
+	SELECT TO_NUMBER('678') + 123 FROM DUAL;
+（ORACLE中DUAL是一个虚拟表，用来构成SELECT的语法规则）
+
+MYSQL：
+
+	SELECT CAST('678' AS SIGNED);
