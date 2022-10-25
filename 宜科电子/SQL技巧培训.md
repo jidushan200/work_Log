@@ -1,4 +1,5 @@
 临时表的作用空间
+
 Table变量使用
 with as使用方法
 几个字符串函数
@@ -6,6 +7,7 @@ DateTime数据转换位字符串显示格式：
 保留小数点显示位数
 日期比较函数DateDiff
 在SQL脚本里获得存储过程返回的数据集
+
 强制锁表
 left join和right join
 group by with rollup数据分组统计
@@ -28,7 +30,8 @@ PIVOT进行行列转换
 
 
 
-Table变量使用
+#### Table变量使用
+
 变形的临时表
 举例：
   DECLARE @tb_test TABLE
@@ -43,7 +46,8 @@ Table变量使用
 
 
 
-with as使用方法：
+#### with as使用方法：
+
 CTE公共表达式，主要是代替临时表，避免降低效率。CTE使用场景极少。
 select中多次引用CTE部分才应该使用with as，只引用一次的应该直接写在select中。
 举例：用GouBuliDB测试
@@ -65,9 +69,10 @@ select中多次引用CTE部分才应该使用with as，只引用一次的应该�
 
 
 
-字符串函数
+#### 字符串函数
 
-字符串定位：CharIndex
+##### 字符串定位：CharIndex
+
 语法：
 CHARINDEX ( expressionToFind , expressionToSearch [ , start_location ] )
 expressionToFind：目标字符串，就是想要找到的字符串，最大长度为8000 。
@@ -78,7 +83,8 @@ start_location：开始查找的位置，为空时默认从第一位开始查找
 select charindex('cd','abcdefg', 1)
 select charindex(',1,10,100,', ',10,' )
 
-截取子字符串：Substring
+##### 截取子字符串：Substring
+
 语法：
 SUBSTRING ( expression, start, length ) 
 expression：字符串、二进制字符串、文本、图像、列或包含列的表达式。请勿使用包含聚合函数的表达式。 
@@ -90,11 +96,14 @@ length： 整数或可以隐式转换为 int 的表达式，指定子字符串�
 select substring('abcdefg', 4, 0)
 select substring('abcdefg', 4, 2)
 
-截取左侧子字符串：
+##### 截取左侧子字符串：
+
 语法：
 LEFT (<character_expression>， <integer_expression>)
 返回character_expression 左起 integer_expression 个字符。
-截取右侧子字符串：
+
+##### 截取右侧子字符串：
+
 语法：
 Right(<character_expression>， <integer_expression>)
 返回character_expression 右起 integer_expression 个字符。
@@ -104,21 +113,24 @@ select right('abcdefg', 2)
 
 
 
-DateTime数据转换位字符串显示格式：
+#### DateTime数据转换位字符串显示格式：
+
 举例：
 转换日期时间为字符串格式
 CONVERT (NVARCHAR (20), getdate(), 120)    返回：2006-05-16 10:57:49
 
 
 
-保留小数点显示位数
+#### 保留小数点显示位数
+
 举例：
 保留两位小数
 select Convert(numeric(18,2),1.3 / 0.3)    返回：4.33
 
 
 
-日期比较函数DateDiff
+#### 日期比较函数DateDiff
+
 参考：https://www.w3school.com.cn/sql/func_datediff.asp
 语法：
 DATEDIFF(datepart,startdate,enddate)
@@ -135,7 +147,8 @@ SELECT DATEDIFF(dd,'2008-12-31','2008-12-29')  返回值：-2
 
 
 
-在SQL脚本里获得存储过程返回的数据集
+#### 在SQL脚本里获得存储过程返回的数据集
+
 使用Insert Into，将存储过程返回的数据行保存到表变量，临时表字段定义必须与返回数据的字段一致，这是唯一的方法。
 举例：
   DECLARE @t TABLE
@@ -156,7 +169,8 @@ SELECT DATEDIFF(dd,'2008-12-31','2008-12-29')  返回值：-2
 
 
 
-强制锁表：
+#### 强制锁表：
+
 不同线程同时对多个表写入时，防止死锁和数据混乱。
 强制排它锁必须处于Transaction中间，COMMIT或ROLLBACK将是释放表锁
 举例：
@@ -166,7 +180,8 @@ WHERE 1 = 0
 
 
 
-left join和right join：
+#### left join和right join：
+
 举例：
   DECLARE @tabperson TABLE(  [personname]    NVARCHAR (50),  [addr]          NVARCHAR (50))
   INSERT INTO @tabperson ([personname], [addr])  VALUES ('张三', '和平区')
@@ -182,8 +197,8 @@ left join和right join：
 
 
 
+#### group by with rollup数据分组统计
 
-group by with rollup数据分组统计
 用group by子句的分类字段进行数据进行分类汇总，用函数grouping()识别数据列是否正被聚合统计
 举例：
 DECLARE @tabscore TABLE
@@ -213,8 +228,10 @@ GROUP BY [class], [addr], [sex] WITH ROLLUP
 
 
 
-partition by数据分组帅选
-partition  by用于给结果集分组排序
+#### partition by数据分组帅选
+
+##### partition  by用于给结果集分组排序
+
 举例：
 DECLARE @tabscore TABLE
                   ([name]     NVARCHAR (10),  [addr]     NVARCHAR (10),  [sex]      NVARCHAR (10),   [class]    NVARCHAR (10),   [score]    NUMERIC (18, 2))
@@ -241,7 +258,8 @@ WHERE t.Num = 1
 
 
 
-游标使用：
+#### 游标使用：
+
 游标可以对结果集的行进行单独操作，一般会用到的是本地、动态游标。游标会占用资源，用后需要关闭和释放。
 举例：
 DECLARE  cur_test CURSOR FOR SELECT [id] FROM [user]                          --声明游标
@@ -261,7 +279,8 @@ SELECT CASE WHEN len (@str) > 0 THEN left (@str, len (@str) - 1) END  --去除�
 
 
 
-xml解析和遍历方法：
+#### xml解析和遍历方法：
+
 使用SQL Server的xml类型变量，能自动对xml字符串进行解析，然后可以用select直接操作。
 举例：
 DECLARE @items   XML
@@ -280,7 +299,8 @@ SELECT * FROM #temp                      --显示
 
 
 
-PIVOT进行行列转换：
+#### PIVOT进行行列转换：
+
 PIVOT实际是透视表计算，它实际是对内容字段进行聚合运算，用它进行行列转换时必须保证内容部分是数字类型。
 举例：
 IF OBJECT_ID ('tempdb..#temp') IS NOT NULL
@@ -361,7 +381,8 @@ EXEC (@sql_str)
 
 
 
-例外处理：
+#### 例外处理：
+
 用raiserror语句手工引发错误，测试出错时try/catch结构的工作效果
 举例：
   IF OBJECT_ID ('temptable') IS NOT NULL
@@ -387,15 +408,16 @@ drop table temptable
 
 	IF @targetnumber < @number
 		Begin
-         RAISERROR ('实际数量不可大于设定数量!', 16, 1)
+	     RAISERROR ('实际数量不可大于设定数量!', 16, 1)
 		End
 
+#### 计算字段创建与使用：
 
-计算字段创建与使用：
 使用计算字段，类似于视图，但比视图优越的地方在于可以方便设置索引，提高索引集中度，另外可以避免数据冗余和代码。
 直接使用SMSS的数据表编辑界面建立计算字段。
 
-SQL类型转换
+#### SQL类型转换
+
 例：获取某日期的数据，比如获取出生日期为2000-01-01以后的数据，且获得的日期为日期格式。假设表名为table，数据的字段为name，age，country，出生日期的字段是born,born字段储存的是字符串的日期比如“2000-02-23”，SQL支持直接用于比较。
 select name,age,country,
 cast(born as date) as born 
@@ -409,7 +431,7 @@ ACCESS:
 或
 
 	SELECT CLNG('678') + 123;
-	
+
 SQLSERVER：
 
 	SELECT CAST('678' AS INT) + 123;
