@@ -453,3 +453,17 @@ ORACLE：
 MYSQL：
 
 	SELECT CAST('678' AS SIGNED);
+
+
+
+#### EXISTS数据重复解决
+
+```sql
+IF EXISTS
+	(select  tpo.modelcode
+     from	t_ptoption tpo
+     inner join (select value 'paramModel' from string_split(@modelcode,',')) 				 cc on tpo.modelcode LIKE ('%' + cc.paramModel + '%'))
+	BEGIN
+		RAISERROR ('车型不可重复！', 16, 1);
+	END
+```
