@@ -18,7 +18,6 @@ PIVOT进行行列转换
 例外处理
 计算字段创建与使用
 
-
 临时表的作用域：
 本地临时表的名称以单个数字符号 (#) 打头
 它们仅对当前的用户连接可见
@@ -166,6 +165,14 @@ SELECT DATEDIFF(dd,'2008-12-31','2008-12-29')  返回值：-2
                   remarks)
   EXEC sp_tables
   SELECT * FROM @t
+
+##### string_split分割字符串为临时数据表
+
+```sql
+select  tpo.modelcode
+from	t_ptoption tpo
+inner join (select value 'paramModel' from string_split(@modelcode,','))
+```
 
 
 
