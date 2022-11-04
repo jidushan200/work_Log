@@ -33,6 +33,8 @@ PIVOT进行行列转换
 
 变形的临时表
 举例：
+
+```sql
   DECLARE @tb_test TABLE
                    (
                       [ID]           INT,
@@ -42,6 +44,21 @@ PIVOT进行行列转换
   INSERT INTO @tb_test ([ID], [Name], [TimeStamp])
   VALUES (1, 'test', getdate ())
   SELECT * FROM @tb_test
+```
+
+
+
+```sql
+IF OBJECT_ID ('tempdb..#temp') IS NOT NULL
+   DROP TABLE #temp                                         --删除临时表
+SELECT T.C.value ('id[1]', 'int') AS 'id',
+       T.C.value ('name[1]', 'nvarchar(50)') AS 'name'
+INTO #temp
+FROM @items.nodes ('/root/item') AS T (C)    --提取xml解析结果存入临时表
+SELECT * FROM #temp                      --显示
+```
+
+
 
 
 
@@ -467,3 +484,55 @@ IF EXISTS
 		RAISERROR ('车型不可重复！', 16, 1);
 	END
 ```
+
+
+
+#### IN关键字的使用
+
+```sql
+SELECT * FROM Customers
+  WHERE Country IN (SELECT Country FROM Suppliers);
+```
+
+```sql
+SELECT * FROM Customers
+  WHERE Country IN (SELECT Country FROM String_Split('ff,aa,cc',','));
+```
+
+```sql
+select * from String_Split('ff,aa,cc',',') cc
+	where cc.value in (select value from string_split('aa,bb,cc',','));
+```
+
+
+
+#### select数据insert插入操作方法
+
+##### 联接查询作为数据
+
+```sql
+insert into AddressList(name,address)
+	select a.UserName,b.address from SYSTEM_Userts a
+	inner join BASE_Customer b on a.code = b.code
+```
+
+##### UNION合并多个结果集作为数据
+
+```sql
+insert into AddressList(name,address)
+	select '张三','洛杉矶'
+	union
+	select '李四','旧金山'
+	union
+	select '王五','华盛顿'
+```
+
+##### 数据来自其他数据库(跨数据库插入)
+
+```sql
+insert into StudentInfo(name)
+	select lxr from AgroDB.dbo.BASE_Customer
+```
+
+
+
