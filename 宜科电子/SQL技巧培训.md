@@ -549,10 +549,14 @@ CASE WHEN @modelcode	= '' THEN NULL ELSE @modelcode	    END
 #### 宜科电子本地脚本过大，导入脚本问题
 
 ```bat
-osql -S DESKTOP-BFU6S7L -U sa -P root -i D:\zhj\Sqlserver工作区\ChangChunPaintDB_bak_202211080904.sql
+osql -S DESKTOP-BFU6S7L\zhj -U sa -P root -i D:\zhj\Sqlserver工作区\ChangChunPaintDB_bak_202211080904.sql
 ```
 
 ```bat
-sqlcmd -S DESKTOP-BFU6S7L -U sa -P root -i D:\zhj\Sqlserver工作区\ChangChunPaintDB_bak_202211080904.sql
+sqlcmd -S DESKTOP-BFU6S7L -U sa -P root -i D:\zhj\Sqlserver工作区\ChangChunPaintDB_Framework.sql
+```
+
+```sql
+osql -S DESKTOP-BFU6S7L -U sa -P root -i  D:\zhj\Sqlserver工作区\ChangChunPaintDB_Framework.sql
 ```
 
