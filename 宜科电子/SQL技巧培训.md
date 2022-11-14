@@ -538,13 +538,28 @@ insert into StudentInfo(name)
 
 #### CASE WHEN不同数据插入判断
 
-例子：
+##### case when 多个条件
 
-```sql
-CASE WHEN @modelcode	= '' THEN NULL ELSE @modelcode	    END
-```
+###### 语法：
 
+SELECT nickname,user_name,
+CASE WHEN user_rank = '5' THEN '经销商'
+WHEN user_rank = '6' THEN '代理商'
+WHEN user_rank = '7' THEN 'VIP'
+ELSE '注册用户' END AS user_rank
+FROM at_users
 
+###### 执行结果：
+
+![1406722-20180607181837757-1246251178](D:\Photo\文档\1406722-20180607181837757-1246251178.png)
+
+##### case when 权重排序
+
+###### 语法：　(case when 条件 then 9 else 0 end) + (case when 条件 then 5 else 0 end) 
+
+![1406722-20180607182303908-993222518](D:\Photo\文档\1406722-20180607182303908-993222518.png)
+
+这样排序出来的好处就是 "搜索出来的结果 更加符合用户想要的内容"
 
 #### 宜科电子本地脚本过大，导入脚本问题
 
