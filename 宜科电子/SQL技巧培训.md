@@ -575,3 +575,30 @@ sqlcmd -S DESKTOP-BFU6S7L -U sa -P root -i D:\zhj\Sqlserver工作区\ChangChunPa
 osql -S DESKTOP-BFU6S7L -U sa -P root -i  D:\zhj\Sqlserver工作区\ChangChunPaintDB_Framework.sql
 ```
 
+
+
+#### SQL秒转 小时 分 秒 
+
+##### 每位转换
+
+```sql
+DECLARE @a int=20000
+SELECT CONVERT(VARCHAR(10),@a/60)+'分'+CONVERT(VARCHAR(10),@a%60)+'秒'
+--333分20秒
+
+
+
+SELECT CONVERT(VARCHAR(10),@a/3600)+'时'+CONVERT(VARCHAR(10),@a%3600/60)+'分'+CONVERT(VARCHAR(10),@a%3600%60)+'秒'
+--5时33分20秒
+```
+
+#####  公式转换
+
+```sql
+SELECT CONVERT(VARCHAR(8),CONVERT(TIME,DATEADD(ss,20000,'1900-01-01'))) 
+
+--05:33:20
+```
+
+
+
