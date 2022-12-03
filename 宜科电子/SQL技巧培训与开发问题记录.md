@@ -1,3 +1,5 @@
+### 数据库
+
 临时表的作用空间
 
 Table变量使用
@@ -600,3 +602,58 @@ SELECT CONVERT(VARCHAR(8),CONVERT(TIME,DATEADD(ss,20000,'1900-01-01 00:00:00')))
 
 
 
+### 开发中遇到的问题
+
+#### 如何关闭easyui中datagrid的默认查询加载时 的 遮罩层
+
+![image-20221116101322342](C:\Users\zhj\AppData\Roaming\Typora\typora-user-images\image-20221116101322342.png)
+
+```txt
+/*datagrid刷新屏闪:关*/
+.datagrid-mask {
+opacity: 0;
+filter: alpha(opacity&=0);
+}
+
+.datagrid-mask-msg {
+opacity: 0;
+filter: alpha(opacity=0);
+}
+```
+
+#### SQL秒转 小时 分 秒 
+
+```txt
+SELECT CONVERT(VARCHAR(8),CONVERT(TIME,DATEADD(ss,20000,'1900-01-01 00:00:00'))) 
+
+‘1900-01-01 00:00:00’ 为起点时间，DATEADD用于计算 20000 与 00:00:00之间的差值，第一个参数 ss代表转换单位为秒【其他的单位诸如：
+				year, yyyy, yy = Year
+                quarter, qq, q = Quarter  季度
+                month, mm, m = month
+                dayofyear, dy, y = Day of the year
+                day, dd, d = Day
+                week, ww, wk = Week
+                weekday, dw, w = Weekday
+                hour, hh = hour
+                minute, mi, n = Minute
+                second, ss, s = Second
+                millisecond, ms = Millisecond
+		 】
+DateAdd方法具体查询路径：https://www.w3school.com.cn/sql/func_dateadd.asp【中文】
+					  https://www.w3schools.com/sql/func_sqlserver_dateadd.asp【EN】
+```
+
+#### 不能重复
+
+```txt
+出车换色限制: (当前颜色+新换颜色)不能重复；当前颜色 与 新换颜色不能重复
+出车颜色数量限制：(区域+颜色代码)不能重复
+
+IF EXISTS
+		(SELECT *
+			FROM m_284384outcolorgaplimit 
+			WHERE [colorcode] = @colorcode  AND
+				  [modelcode] = @modelcode	AND
+				  [areaid]    <> @areaid	)
+		RAISERROR ('颜色与角度 不可重复！', 16, 1);
+```
