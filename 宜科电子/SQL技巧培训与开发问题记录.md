@@ -546,9 +546,9 @@ insert into StudentInfo(name)
 
 SELECT nickname,user_name,
 CASE WHEN user_rank = '5' THEN '经销商'
-WHEN user_rank = '6' THEN '代理商'
-WHEN user_rank = '7' THEN 'VIP'
-ELSE '注册用户' END AS user_rank
+		  WHEN user_rank = '6' THEN '代理商'
+		  WHEN user_rank = '7' THEN 'VIP'
+		  ELSE '注册用户' END AS user_rank
 FROM at_users
 
 ###### 执行结果：
