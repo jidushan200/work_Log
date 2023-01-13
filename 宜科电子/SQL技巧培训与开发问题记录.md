@@ -287,7 +287,9 @@ WHERE t.Num = 1
 #### 游标使用：
 
 游标可以对结果集的行进行单独操作，一般会用到的是本地、动态游标。游标会占用资源，用后需要关闭和释放。
-举例：
+例子1：
+
+```sql
 DECLARE  cur_test CURSOR FOR SELECT [id] FROM [user]                          --声明游标
 OPEN cur_test                                                           --打开游标
 DECLARE @str   NVARCHAR (3000)
@@ -302,6 +304,27 @@ END
 CLOSE cur_test                                                          --关闭游标
 DEALLOCATE cur_test                                               --释放游标资源
 SELECT CASE WHEN len (@str) > 0 THEN left (@str, len (@str) - 1) END  --去除最后的逗号
+```
+
+例子2：
+
+```sql
+DECLARE @Num INT,@Count INT--定义变量
+DECLARE My_Cursor CURSOR --定义游标
+FOR(SELECT num FROM (VALUES (100), (200), (330), (450), (560)) [1 to 5](num)) --查询5个数
+
+OPEN My_Cursor; --打开游标
+FETCH NEXT FROM My_Cursor INTO @Num
+WHILE(@@FETCH_STATUS = 0)
+	BEGIN
+		SELECT @Num
+		FETCH NEXT FROM My_Cursor INTO @Num
+	END
+	CLOSE My_Cursor; --关闭游标
+DEALLOCATE My_Cursor; --释放游标
+```
+
+
 
 
 
