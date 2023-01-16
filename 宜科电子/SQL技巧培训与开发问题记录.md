@@ -324,6 +324,25 @@ WHILE(@@FETCH_STATUS = 0)
 DEALLOCATE My_Cursor; --释放游标
 ```
 
+例子3：
+
+```sql
+DECLARE @code NVARCHAR(20),@number INT,@model NVARCHAR(10)
+DECLARE my_cursor CURSOR
+
+FOR(SELECT code,number,model FROM tm_screw)
+OPEN my_cursor;
+FETCH NEXT FROM my_cursor INTO @code,@number,@model
+WHILE(@@FETCH_STATUS = 0)
+	BEGIN
+		SELECT * FROM tm_screw WHERE code = @code AND number = @number AND model = @model
+
+		FETCH NEXT FROM my_cursor INTO @code,@number,@model
+	END
+CLOSE my_cursor;
+DEALLOCATE my_cursor;
+```
+
 
 
 
