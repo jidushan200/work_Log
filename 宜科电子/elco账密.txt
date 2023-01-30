@@ -1,0 +1,46 @@
+Git地址
+佛山一汽大众中控程序
+https://win-4pu3s0q88bj:8443/svn/FoShanFAWVW_GRJ2109/Web
+https://win-4pu3s0q88bj:8443/svn/FoShanFAWVW_GRJ2109/数据库设计
+
+zhj本地库地址
+#本地 也可以 用 . 代替
+<value>Data Source=.;user id=sa;password=root;database=N117Andon;max pool size = 50;</value>
+<add name="ConnString" connectionString="Data Source=DESKTOP-BFU6S7L;user id=sa;password=root;database=FoshanCentralControlDB;max pool size=50;"/>
+DESKTOP-BFU6S7L
+sa
+root
+  
+行业应用一部 测试库
+  <add name="ConnString" connectionString="Data Source=192.168.60.68\SQL2016;user id=sa;password=elco2019;database=FoshanCentralControlDB;max pool size=50;"/>
+192.168.60.68\SQL2016
+sa
+elco2019
+
+   <add name="ConnString" connectionString="Data Source=192.168.0.122;user id=elcodb;password=Mes2020;database=FoshanCentralControlDB;max pool size=50;"/>
+192.168.0.122
+elcodb
+Mes2020
+
+佛山中控 新svn
+https://192.168.60.68:8443/svn/GRJ2109_FoShanFawVwCentraControlSystem
+jingjing.wu wu123
+suzhen.wu wu123
+
+
+N117_AndonSystem  项目
+svn：hongjin.zhu 123456
+https://192.168.60.68:8443/svn/GRJ2025_HongQiN117Andon/AndonScreen
+N117_AndonSystem 数据库
+192.168.0.122  
+sa 
+elco2019
+
+重庆工职院 mes系统
+192.168.0.9
+9997
+
+
+天津一汽远程：
+数据库：10.234.140.47	用户名：sa 密码：ELco2016
+远程：10.234.140.47 用户名：dell  密码：elco2019
