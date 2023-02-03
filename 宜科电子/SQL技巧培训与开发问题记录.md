@@ -644,6 +644,25 @@ SELECT CONVERT(VARCHAR(8),CONVERT(TIME,DATEADD(ss,20000,'1900-01-01 00:00:00')))
 
 
 
+#### sqlserver数据集转字符串
+
+方法1：
+
+```sql
+DECLARE @Curve VARCHAR(100)
+SELECT @Curve=ISNULL(@Curve+',','')+  t.[errorstr] FROM (select distinct errorstr  from @errortable) t
+
+select @Curve 'Curve'
+```
+
+方法2：
+
+```sql
+set @Curve = (select distinct [code] + ',' from tm_datatag where 1=0 for xml path(''))
+```
+
+
+
 ### 开发中遇到的问题
 
 #### 如何关闭easyui中datagrid的默认查询加载时 的 遮罩层
