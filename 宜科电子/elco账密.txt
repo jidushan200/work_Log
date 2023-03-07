@@ -27,6 +27,14 @@ https://192.168.60.68:8443/svn/GRJ2109_FoShanFawVwCentraControlSystem
 jingjing.wu wu123
 suzhen.wu wu123
 
+远程密码：
+windows密码：123
+	
+10.87.4.36
+FsCP4BSCCRa1+
+
+VNC远程密码：pwd_Admin21
+
 
 N117_AndonSystem  项目
 svn：hongjin.zhu 123456
