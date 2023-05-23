@@ -13,8 +13,8 @@ root
 
 行业应用一部-测试服务器
 ip 192.168.0.122  未开通外网
-       win server 2016  8核 12G内存
-       administrator  Mes_Dev_@
+win server 2016  8核 12G内存
+administrator  密码：Mes_Dev_@
 
 
 行业应用一部 测试库
