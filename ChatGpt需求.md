@@ -163,7 +163,11 @@ BEGIN
           T.C.value ('standtime[1]', 'nvarchar(100)')
              AS 'standtime',
           T.C.value ('description[1]', 'nvarchar(200)')
-             AS 'description'
+             AS 'description',
+		  T.C.value ('standdate[1]', 'date')
+			 AS 'standdate',
+		  T.C.value ('area[1]', 'nvarchar(50)')
+			 AS 'area'
    INTO #temp
    FROM @xml.nodes ('/Data/Row') AS T (C)
 
@@ -171,11 +175,11 @@ BEGIN
       BEGIN TRANSACTION
 
       --检查数据项
-      IF EXISTS
-            (SELECT *
-             FROM #temp
-             WHERE [vin] = '')
-         RAISERROR ('VIN号不可为空！', 16, 1)
+      --IF EXISTS
+      --      (SELECT *
+      --       FROM #temp
+      --       WHERE [vin] = '')
+      --   RAISERROR ('VIN号不可为空！', 16, 1)
 
       COMMIT;
    END TRY
@@ -194,7 +198,8 @@ END
 下面是需求
 
 ```txt
-我用C#向SqlServer传递了一个xml字符串，我需要用SqlServer处理这个xml，解析出前端传过来的字段。
+我用C#向SqlServer传递了一个xml字符串，我需要用SqlServer处理这个xml.
+将这个xml解析成一个表，然后插入到A表中，写出例子。下面有个xml的数据
 ```
 
 下面是xml数据
@@ -208,6 +213,8 @@ END
       <Cell Column="standtype">设备</Cell>
       <Cell Column="standtime"></Cell>
       <Cell Column="description"></Cell>
+      <Cell Column="date">2023-06-16</Cell>
+      <Cell Column="area">VBH</Cell>
     </Row>
     <Row>
       <Cell Column="begintime">08：00</Cell>
@@ -215,6 +222,8 @@ END
       <Cell Column="standtype">工艺</Cell>
       <Cell Column="standtime"></Cell>
       <Cell Column="description"></Cell>
+      <Cell Column="date">2023-06-16</Cell>
+      <Cell Column="area">VBH</Cell>
     </Row>
     <Row>
       <Cell Column="begintime">09：00</Cell>
@@ -222,6 +231,8 @@ END
       <Cell Column="standtype">设备</Cell>
       <Cell Column="standtime"></Cell>
       <Cell Column="description"></Cell>
+      <Cell Column="date">2023-06-16</Cell>
+      <Cell Column="area">VBH</Cell>
     </Row>
     <Row>
       <Cell Column="begintime">09：00</Cell>
@@ -229,104 +240,8 @@ END
       <Cell Column="standtype">工艺</Cell>
       <Cell Column="standtime"></Cell>
       <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">10：00</Cell>
-      <Cell Column="endtime">11：00</Cell>
-      <Cell Column="standtype">设备</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">10：00</Cell>
-      <Cell Column="endtime">11：00</Cell>
-      <Cell Column="standtype">工艺</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">11：00</Cell>
-      <Cell Column="endtime">12：00</Cell>
-      <Cell Column="standtype">设备</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">11：00</Cell>
-      <Cell Column="endtime">12：00</Cell>
-      <Cell Column="standtype">工艺</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">12：00</Cell>
-      <Cell Column="endtime">13：00</Cell>
-      <Cell Column="standtype">设备</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">12：00</Cell>
-      <Cell Column="endtime">13：00</Cell>
-      <Cell Column="standtype">工艺</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">13：00</Cell>
-      <Cell Column="endtime">14：00</Cell>
-      <Cell Column="standtype">设备</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">13：00</Cell>
-      <Cell Column="endtime">14：00</Cell>
-      <Cell Column="standtype">工艺</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">14：00</Cell>
-      <Cell Column="endtime">15：00</Cell>
-      <Cell Column="standtype">设备</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">14：00</Cell>
-      <Cell Column="endtime">15：00</Cell>
-      <Cell Column="standtype">工艺</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">15：00</Cell>
-      <Cell Column="endtime">16：00</Cell>
-      <Cell Column="standtype">设备</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">15：00</Cell>
-      <Cell Column="endtime">16：00</Cell>
-      <Cell Column="standtype">工艺</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">16：00</Cell>
-      <Cell Column="endtime">16：30</Cell>
-      <Cell Column="standtype">设备</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">16：00</Cell>
-      <Cell Column="endtime">16：30</Cell>
-      <Cell Column="standtype">工艺</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
+      <Cell Column="date">2023-06-16</Cell>
+      <Cell Column="area">VBH</Cell>
     </Row>
   </Sheet>
   <Sheet Name="二班">
@@ -336,6 +251,8 @@ END
       <Cell Column="standtype">设备</Cell>
       <Cell Column="standtime"></Cell>
       <Cell Column="description"></Cell>
+      <Cell Column="date">2023-06-16</Cell>
+      <Cell Column="area">VBH</Cell>
     </Row>
     <Row>
       <Cell Column="begintime">16：30</Cell>
@@ -343,6 +260,8 @@ END
       <Cell Column="standtype">工艺</Cell>
       <Cell Column="standtime"></Cell>
       <Cell Column="description"></Cell>
+      <Cell Column="date">2023-06-16</Cell>
+      <Cell Column="area">VBH</Cell>
     </Row>
     <Row>
       <Cell Column="begintime">17：00</Cell>
@@ -350,6 +269,8 @@ END
       <Cell Column="standtype">设备</Cell>
       <Cell Column="standtime"></Cell>
       <Cell Column="description"></Cell>
+      <Cell Column="date">2023-06-16</Cell>
+      <Cell Column="area">VBH</Cell>
     </Row>
     <Row>
       <Cell Column="begintime">17：00</Cell>
@@ -357,6 +278,8 @@ END
       <Cell Column="standtype">工艺</Cell>
       <Cell Column="standtime"></Cell>
       <Cell Column="description"></Cell>
+      <Cell Column="date">2023-06-16</Cell>
+      <Cell Column="area">VBH</Cell>
     </Row>
     <Row>
       <Cell Column="begintime">18：00</Cell>
@@ -364,6 +287,8 @@ END
       <Cell Column="standtype">设备</Cell>
       <Cell Column="standtime"></Cell>
       <Cell Column="description"></Cell>
+      <Cell Column="date">2023-06-16</Cell>
+      <Cell Column="area">VBH</Cell>
     </Row>
     <Row>
       <Cell Column="begintime">18：00</Cell>
@@ -371,90 +296,8 @@ END
       <Cell Column="standtype">工艺</Cell>
       <Cell Column="standtime"></Cell>
       <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">19：00</Cell>
-      <Cell Column="endtime">20：00</Cell>
-      <Cell Column="standtype">设备</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">19：00</Cell>
-      <Cell Column="endtime">20：00</Cell>
-      <Cell Column="standtype">工艺</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">20：00</Cell>
-      <Cell Column="endtime">21：00</Cell>
-      <Cell Column="standtype">设备</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">20：00</Cell>
-      <Cell Column="endtime">21：00</Cell>
-      <Cell Column="standtype">工艺</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">21：00</Cell>
-      <Cell Column="endtime">22：00</Cell>
-      <Cell Column="standtype">设备</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">21：00</Cell>
-      <Cell Column="endtime">22：00</Cell>
-      <Cell Column="standtype">工艺</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">22：00</Cell>
-      <Cell Column="endtime">23：00</Cell>
-      <Cell Column="standtype">设备</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">22：00</Cell>
-      <Cell Column="endtime">23：00</Cell>
-      <Cell Column="standtype">工艺</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">23：00</Cell>
-      <Cell Column="endtime">24：00</Cell>
-      <Cell Column="standtype">设备</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">23：00</Cell>
-      <Cell Column="endtime">24：00</Cell>
-      <Cell Column="standtype">工艺</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">24：00</Cell>
-      <Cell Column="endtime">01：00</Cell>
-      <Cell Column="standtype">设备</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">24：00</Cell>
-      <Cell Column="endtime">01：00</Cell>
-      <Cell Column="standtype">工艺</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
+      <Cell Column="date">2023-06-16</Cell>
+      <Cell Column="area">VBH</Cell>
     </Row>
   </Sheet>
   <Sheet Name="三班">
@@ -464,6 +307,8 @@ END
       <Cell Column="standtype">设备</Cell>
       <Cell Column="standtime"></Cell>
       <Cell Column="description"></Cell>
+      <Cell Column="date">2023-06-16</Cell>
+      <Cell Column="area">VBH</Cell>
     </Row>
     <Row>
       <Cell Column="begintime">01：00</Cell>
@@ -471,6 +316,8 @@ END
       <Cell Column="standtype">工艺</Cell>
       <Cell Column="standtime"></Cell>
       <Cell Column="description"></Cell>
+      <Cell Column="date">2023-06-16</Cell>
+      <Cell Column="area">VBH</Cell>
     </Row>
     <Row>
       <Cell Column="begintime">02：00</Cell>
@@ -478,6 +325,8 @@ END
       <Cell Column="standtype">设备</Cell>
       <Cell Column="standtime"></Cell>
       <Cell Column="description"></Cell>
+      <Cell Column="date">2023-06-16</Cell>
+      <Cell Column="area">VBH</Cell>
     </Row>
     <Row>
       <Cell Column="begintime">02：00</Cell>
@@ -485,76 +334,8 @@ END
       <Cell Column="standtype">工艺</Cell>
       <Cell Column="standtime"></Cell>
       <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">03：00</Cell>
-      <Cell Column="endtime">04：00</Cell>
-      <Cell Column="standtype">设备</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">03：00</Cell>
-      <Cell Column="endtime">04：00</Cell>
-      <Cell Column="standtype">工艺</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">04：00</Cell>
-      <Cell Column="endtime">05：00</Cell>
-      <Cell Column="standtype">设备</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">04：00</Cell>
-      <Cell Column="endtime">05：00</Cell>
-      <Cell Column="standtype">工艺</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">05：00</Cell>
-      <Cell Column="endtime">06：00</Cell>
-      <Cell Column="standtype">设备</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">05：00</Cell>
-      <Cell Column="endtime">06：00</Cell>
-      <Cell Column="standtype">工艺</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">06：00</Cell>
-      <Cell Column="endtime">07：00</Cell>
-      <Cell Column="standtype">设备</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">06：00</Cell>
-      <Cell Column="endtime">07：00</Cell>
-      <Cell Column="standtype">工艺</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">07：00</Cell>
-      <Cell Column="endtime">08：00</Cell>
-      <Cell Column="standtype">设备</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
-    </Row>
-    <Row>
-      <Cell Column="begintime">07：00</Cell>
-      <Cell Column="endtime">08：00</Cell>
-      <Cell Column="standtype">工艺</Cell>
-      <Cell Column="standtime"></Cell>
-      <Cell Column="description"></Cell>
+      <Cell Column="date">2023-06-16</Cell>
+      <Cell Column="area">VBH</Cell>
     </Row>
     <Row />
   </Sheet>
