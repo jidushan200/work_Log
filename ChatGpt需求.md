@@ -147,5 +147,55 @@ private string GetExcelXmlString(Stream sm, string Extension)
 阅读下方SQL
 
 ```sql
+ALTER PROCEDURE [dbo].[web_carlist_excelimport_ins] @xml      XML
+   WITH
+   EXEC AS CALLER
+AS
+BEGIN
+   IF OBJECT_ID ('tempdb..#temp') IS NOT NULL
+      DROP TABLE #temp
+   SELECT T.C.value ('begintime[1]', 'datetime')
+             AS 'begintime',
+          T.C.value ('endtime[1]', 'datetime')
+             AS 'endtime',
+          T.C.value ('standtype[1]', 'nvarchar(50)')
+             AS 'standtype',
+          T.C.value ('standtime[1]', 'nvarchar(100)')
+             AS 'standtime',
+          T.C.value ('description[1]', 'nvarchar(200)')
+             AS 'description'
+   INTO #temp
+   FROM @xml.nodes ('/Data/Row') AS T (C)
+
+   BEGIN TRY
+      BEGIN TRANSACTION
+
+      --检查数据项
+      IF EXISTS
+            (SELECT *
+             FROM #temp
+             WHERE [vin] = '')
+         RAISERROR ('VIN号不可为空！', 16, 1)
+
+      COMMIT;
+   END TRY
+   BEGIN CATCH
+      ROLLBACK
+      DECLARE @MESSAGE   NVARCHAR (4000)
+      DECLARE @SEVERITY   INT
+      DECLARE @STATE   INT
+      SET @MESSAGE = ERROR_MESSAGE ()
+      SET @SEVERITY = ERROR_SEVERITY ()
+      RAISERROR (@MESSAGE, @SEVERITY, 1)
+   END CATCH
+END
 ```
+
+下面是需求
+
+```txt
+我用C#向SqlServer传递了一个xml字符串，我需要用SqlServer处理这个xml，解析出前端传过来的字段。
+```
+
+下面是xml数据
 
