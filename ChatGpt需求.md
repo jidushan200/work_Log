@@ -1352,3 +1352,89 @@ gcc bank_queue_system.c -o bank_queue_system
 
 这个简单的C语言实现包含了一个用于表示顾客的结构体（包括编号和是否为VIP），一个用于表示队列的结构体，以及一些用于操作队列的函数。`main` 函数模拟了顾客进入银行、排队和服务的过程。请注意，此实现没有包括对VIP窗口的特殊处理，您可以根据需要进行修改。
 
+
+
+#### 问题6 解决信息窗问题
+
+阅读下方代码
+
+```js
+$('.text_cell').hover(
+    function (e) {
+        var text = $(this).text();
+        var bubble = $('#textBubble');
+        bubble.text(text);
+        bubble.css({
+            top: e.pageY - bubble.outerHeight() - 10,
+            left: e.pageX - (bubble.outerWidth() / 2)
+        });
+        if (text != "") {
+            bubble.show();
+        }
+    },
+    function () {
+        $('#textBubble').hide();
+    }
+);
+```
+
+我需要在用户鼠标悬浮1500ms后显示弹窗，帮我改一下代码
+
+##### 答案
+
+```js
+var hoverTimeout;
+
+$('.text_cell').hover(
+    function (e) {
+        var text = $(this).text();
+        var bubble = $('#textBubble');
+        bubble.text(text);
+        bubble.css({
+            top: e.pageY - bubble.outerHeight() - 10,
+            left: e.pageX - (bubble.outerWidth() / 2)
+        });
+
+        if (text != "") {
+            hoverTimeout = setTimeout(function () {
+                bubble.show();
+            }, 1500);
+        }
+    },
+    function () {
+        clearTimeout(hoverTimeout);
+        $('#textBubble').hide();
+    }
+);
+```
+
+
+
+#### 问题7 
+
+阅读下方html
+
+```html
+<td class="white-bg text_cell">测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试∷adfsdfasf∷dfadfdsf∷asdfsdf∷123dsad∷dsfa∷daf∷adsf∷sdafd</td>
+```
+
+1.文字是由text变量赋值的，text中有"∷"字符。我需要你帮我做处理，看到"∷"就换行
+
+2.在页面显示的时候，不要全部显示出来，固定显示一行且宽度要合适。多余的部分用“...”代替，用于页面显示
+
+
+
+#### 问题8  优化问题7
+
+##### 阅读下方代码
+
+```html
+<td class="white-bg text_cell">测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试<br>adfsdfasf<br>dfadfdsf<br>asdfsdf<br>123dsad<br>dsfa<br>daf<br>adsf<br>sdafd</td>
+```
+
+##### 需求
+
+```txt
+我希望得到的效果是在界面中，由于显示字符太多，进行”...“显示
+```
+
