@@ -1456,4 +1456,68 @@ $('.text_cell').hover(
 
 #### 问题10 使用js导出Excel
 
-实现一下，
+阅读下面的html
+
+```html
+<table id="table_1">
+                    <thead id="">
+                        <tr id="title_one">
+                            <th id="title_one_t1" colspan="23" class="deep-blue">各区域产量完成统计表</th>
+                        </tr>
+                        <tr class="light-green title_two"><th rowspan="1">产量</th>
+<th rowspan="2">可动率<br>
+    (%)<br>
+    目标<br>
+    98%</th>
+<th rowspan="2">目标<br>
+    产量</th>
+<th rowspan="2">实际<br>
+    产量</th>
+<th rowspan="2">差额</th><th colspan="6">白班</th><th colspan="6">二班</th><th colspan="6">三班</th></tr>
+                        <tr class="light-green title_three"><th rowspan="1">区域</th><th>计划<br>
+    产量</th>
+<th>实际<br>
+    产量</th>
+<th>差额</th>
+<th>停台<br>
+    类型</th>
+<th>停台<br>
+    时间</th>
+<th>备注</th><th>计划<br>
+    产量</th>
+<th>实际<br>
+    产量</th>
+<th>差额</th>
+<th>停台<br>
+    类型</th>
+<th>停台<br>
+    时间</th>
+<th>备注</th><th>计划<br>
+    产量</th>
+<th>实际<br>
+    产量</th>
+<th>差额</th>
+<th>停台<br>
+    类型</th>
+<th>停台<br>
+    时间</th>
+<th>备注</th></tr>
+                    </thead>
+                    <tbody id="tbody_1"><tr><td class="green-bg" rowspan="2">PVC1</td><td class="white-bg" rowspan="2">100%</td><td class="white-bg" rowspan="2">367</td><td class="white-bg" rowspan="2">0</td><td class="red-bg" rowspan="2">-367</td><td class="white-bg" rowspan="2">23</td><td class="white-bg" rowspan="2">0</td><td class="red-bg" rowspan="2">-23</td><td class="green-bg">设备</td><td class="white-bg">0</td><td class="white-bg text_cell"><div></div></td><td class="white-bg" rowspan="2">321</td><td class="white-bg" rowspan="2">0</td><td class="red-bg" rowspan="2">-321</td><td class="green-bg">设备</td><td class="white-bg">0</td><td class="white-bg text_cell"><div></div></td><td class="white-bg" rowspan="2">23</td><td class="white-bg" rowspan="2">0</td><td class="red-bg" rowspan="2">-23</td><td class="green-bg">设备</td><td class="white-bg">0</td><td class="white-bg text_cell"><div></div></td></tr><tr><td class="green-bg">工艺</td><td class="white-bg">0</td><td class="white-bg text_cell"><div></div></td><td class="green-bg">工艺</td><td class="white-bg">0</td><td class="white-bg text_cell"><div></div></td><td class="green-bg">工艺</td><td class="white-bg">0</td><td class="white-bg text_cell"><div></div></td></tr><tr>
+    <td class="green-bg" rowspan="3">汇报项</td>
+    <td class="green-bg">白班</td>
+    <td class="white-bg tl" colspan="22"></td>
+</tr>
+<tr>
+    <td class="green-bg">二班</td>
+    <td class="white-bg tl" colspan="22"></td>
+</tr>
+<tr>
+    <td class="green-bg">三班</td>
+    <td class="white-bg tl" colspan="22"></td>
+</tr></tbody>
+                </table>
+```
+
+请使用JQuery实现，页面中的table转Excel并导出，后端是C#
+
