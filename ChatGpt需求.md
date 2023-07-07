@@ -1456,7 +1456,7 @@ $('.text_cell').hover(
 
 #### 问题10 使用js导出Excel
 
-阅读下面的html
+##### 阅读下面的html
 
 ```html
 <table id="table_1">
@@ -1521,3 +1521,54 @@ $('.text_cell').hover(
 
 请使用JQuery实现，页面中的table转Excel并导出，后端是C#
 
+
+
+##### 答案
+
+要在前端使用 jQuery 将表格转换为 Excel 并导出，首先需要使用 [table2excel ↗](https://github.com/rainabba/jquery-table2excel) 插件。这个插件允许你从 HTML 表格生成 Excel 文件。你可以通过以下方式引入 jQuery 和 table2excel：
+
+```html
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-table2excel@1.2.1/dist/js/jquery.table2excel.min.js"></script>
+```
+
+接下来，您可以使用以下示例代码将页面中的表格转换为 Excel 文件并导出：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export to Excel</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-table2excel@1.2.1/dist/js/jquery.table2excel.min.js"></script>
+</head>
+<body>
+    <!-- Your HTML table goes here -->
+    <table id="table_1">
+        <!-- HTML table content -->
+    </table>
+    <button id="export-btn">导出到 Excel</button>
+    <script>
+        $(document).ready(function() {
+            $("#export-btn").click(function() {
+                $("#table_1").table2excel({
+                    exclude: ".noExl",
+                    name: "Table2Excel",
+                    filename: "table_export.xls",
+                    fileext: ".xls",
+                    exclude_img: true,
+                    exclude_links: true,
+                    exclude_inputs: true
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+```
+
+这段代码将会在页面上创建一个按钮，当点击该按钮时，会将页面中的表格导出为 Excel 文件。
+
+关于后端 C# 的部分，由于前端已经实现了表格到 Excel 的转换和导出功能，后端无需进行任何处理。如果需要将导出的 Excel 文件发送到后端进行处理，可以考虑使用 AJAX 发送文件。但这超出了问题的范围，请根据实际需求进行调整。
