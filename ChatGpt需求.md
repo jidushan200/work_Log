@@ -4,6 +4,8 @@
 
 长春二涂项目2023年6月16日11:40:25 周五
 
+### GPT3
+
 #### 问题1       C#将导入Excel转xml
 
 阅读下方的中文注释的C#代码
@@ -1572,3 +1574,477 @@ $('.text_cell').hover(
 这段代码将会在页面上创建一个按钮，当点击该按钮时，会将页面中的表格导出为 Excel 文件。
 
 关于后端 C# 的部分，由于前端已经实现了表格到 Excel 的转换和导出功能，后端无需进行任何处理。如果需要将导出的 Excel 文件发送到后端进行处理，可以考虑使用 AJAX 发送文件。但这超出了问题的范围，请根据实际需求进行调整。
+
+
+
+#### 问题11 使用js导出Excel
+
+阅读下方html：
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="/jquery-easyui-1.8.6/jquery.min.js"></script>
+    <script type="text/javascript" src="/jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
+    <title>产量完成统计日报 - 涂装中控系统</title>
+
+    <style>
+        *{
+            margin:0  ;
+            padding:0
+        }
+
+        .searchBtn {
+            margin-bottom: 0;
+        }
+
+        /*表格+表头*/
+        #table_1 {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 8px !important;
+        }
+
+            #table_1 th, #table_1 td {
+                border: 1px solid black;
+                text-align: center;
+                padding: 5px;
+            }
+
+        .deep-blue {
+            background-color: #000080;
+            color: white;
+        }
+
+        .light-green {
+            background-color: #90EE90;
+        }
+
+        /*表数据*/
+        .green-bg {
+            background-color: lightgreen;
+        }
+
+        .white-bg {
+            background-color: white;
+        }
+
+        .red-bg {
+            background-color: red;
+        }
+
+        .yellow-bg {
+            background-color: yellow;
+        }
+
+        .white-text {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <table id="table_1">
+        <thead id="">
+            <tr id="title_one">
+                <th id="title_one_t1" colspan="23" class="deep-blue">各区域产量完成统计表</th>
+            </tr>
+            <tr class="light-green title_two">
+                <th rowspan="1">产量</th>
+                <th rowspan="2">
+                    可动率
+                    (%)
+                    目标
+                    98%
+                </th>
+                <th rowspan="2">
+                    目标<br>
+                    产量
+                </th>
+                <th rowspan="2">
+                    实际<br>
+                    产量
+                </th>
+                <th rowspan="2">差额</th>
+                <th colspan="6">白班</th>
+                <th colspan="6">二班</th>
+                <th colspan="6">三班</th>
+            </tr>
+            <tr class="light-green title_three">
+                <th rowspan="1">区域</th>
+                <th>
+                    计划<br>
+                    产量
+                </th>
+                <th>
+                    实际<br>
+                    产量
+                </th>
+                <th>差额</th>
+                <th>
+                    停台<br>
+                    类型
+                </th>
+                <th>
+                    停台<br>
+                    时间
+                </th>
+                <th>备注</th>
+                <th>
+                    计划<br>
+                    产量
+                </th>
+                <th>
+                    实际<br>
+                    产量
+                </th>
+                <th>差额</th>
+                <th>
+                    停台<br>
+                    类型
+                </th>
+                <th>
+                    停台<br>
+                    时间
+                </th>
+                <th>备注</th>
+                <th>
+                    计划<br>
+                    产量
+                </th>
+                <th>
+                    实际<br>
+                    产量
+                </th>
+                <th>差额</th>
+                <th>
+                    停台<br>
+                    类型
+                </th>
+                <th>
+                    停台<br>
+                    时间
+                </th>
+                <th>备注</th>
+            </tr>
+        </thead>
+        <tbody id="tbody_1">
+            <tr>
+                <td class="green-bg" rowspan="2">VBH</td>
+                <td class="white-bg" rowspan="2">100%</td>
+                <td class="white-bg" rowspan="2">1400</td>
+                <td class="white-bg" rowspan="2">1392</td>
+                <td class="yellow-bg" rowspan="2">-8</td>
+                <td class="white-bg" rowspan="2">500</td>
+                <td class="white-bg" rowspan="2">503</td>
+                <td class="green-bg" rowspan="2">3</td>
+                <td class="green-bg">设备</td>
+                <td class="white-bg">0</td>
+                <td class="white-bg text_cell"><div></div></td>
+                <td class="white-bg" rowspan="2">500</td>
+                <td class="white-bg" rowspan="2">483</td>
+                <td class="red-bg" rowspan="2">-17</td>
+                <td class="green-bg">设备</td>
+                <td class="white-bg">0</td>
+                <td class="white-bg text_cell"><div></div></td>
+                <td class="white-bg" rowspan="2">400</td>
+                <td class="white-bg" rowspan="2">406</td>
+                <td class="green-bg" rowspan="2">6</td>
+                <td class="green-bg">设备</td>
+                <td class="white-bg">0</td>
+                <td class="white-bg text_cell"><div></div></td>
+            </tr>
+            <tr>
+                <td class="green-bg">工艺</td>
+                <td class="white-bg">0</td>
+                <td class="white-bg text_cell"><div></div></td>
+                <td class="green-bg">工艺</td>
+                <td class="white-bg">0</td>
+                <td class="white-bg text_cell"><div></div></td>
+                <td class="green-bg">工艺</td>
+                <td class="white-bg">0</td>
+                <td class="white-bg text_cell"><div></div></td>
+            </tr>
+            <tr>
+                <td class="green-bg" rowspan="3">汇报项</td>
+                <td class="green-bg">白班</td>
+                <td class="white-bg tl" colspan="21">白天测试</td>
+            </tr>
+            <tr>
+                <td class="green-bg">二班</td>
+                <td class="white-bg tl" colspan="21">二班测试</td>
+            </tr>
+            <tr>
+                <td class="green-bg">三班</td>
+                <td class="white-bg tl" colspan="21">三班测试</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+```
+
+需求：
+
+请使用TableExport(https://github.com/clarketm/TableExport)
+
+来完成Table转Excel，并用JQuery原生在网页实现
+
+
+
+### GPT4
+
+#### 问题12 sql写法的区别
+
+查看下面的SQL
+
+```txt
+isnull ((t1.[val_shiftnum] - t1.[target_shiftnum]), 0) +
+isnull ((t2.[val_shiftnum] - t2.[target_shiftnum]), 0) +
+isnull ((t3.[val_shiftnum] - t3.[target_shiftnum]), 0)
+```
+
+和这种写法
+
+```txt
+ isnull ((t1.[val_shiftnum] - t1.[target_shiftnum])+ (t2.[val_shiftnum] - t2.[target_shiftnum])+(t3.[val_shiftnum] - t3.[target_shiftnum]), 0)
+```
+
+这两种有什么区别呢？
+
+##### 答案
+
+这两种SQL写法在某些情况下会有不同的结果。
+
+第一种写法：
+```txt
+isnull ((t1.[val_shiftnum] - t1.[target_shiftnum]), 0) +
+isnull ((t2.[val_shiftnum] - t2.[target_shiftnum]), 0) +
+isnull ((t3.[val_shiftnum] - t3.[target_shiftnum]), 0)
+```
+在这个语句中，如果任一对中的 `[val_shiftnum]` 或 `[target_shiftnum]` 是 `NULL`，那么那一对的差将被认为是0。换句话说，这将对每对 `[val_shiftnum]` 和 `[target_shiftnum]` 单独应用 `ISNULL` 函数，然后把结果相加。
+
+第二种写法：
+```txt
+ isnull ((t1.[val_shiftnum] - t1.[target_shiftnum])+ (t2.[val_shiftnum] - t2.[target_shiftnum])+(t3.[val_shiftnum] - t3.[target_shiftnum]), 0)
+```
+在这个语句中，只有当所有的 `[val_shiftnum]` 和 `[target_shiftnum]` 都是非 `NULL`，计算的结果才会非 `NULL`。如果三个差值中有任何一个包含 `NULL`（即 `[val_shiftnum]` 或 `[target_shiftnum]` 为 `NULL`），那么整个表达式的结果就会是 `NULL`，然后 `ISNULL` 函数会将其转为0。
+
+总的来说，主要区别在于 `ISNULL` 函数应用的位置。第一种写法会对每个差值分别应用 `ISNULL`，然后把结果相加。第二种写法会对所有差值的总和应用 `ISNULL`，如果其中有任何一个差值是 `NULL`，那么总和就会是 `NULL`，然后被转为0。
+
+
+
+#### 问题13 table转Excel
+
+下面是html+css
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="/jquery-easyui-1.8.6/jquery.min.js"></script>
+    <script type="text/javascript" src="/jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
+    <title>产量完成统计日报 - 涂装中控系统</title>
+
+    <style>
+        *{
+            margin:0  ;
+            padding:0
+        }
+
+        .searchBtn {
+            margin-bottom: 0;
+        }
+
+        /*表格+表头*/
+        #table_1 {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 8px !important;
+        }
+
+            #table_1 th, #table_1 td {
+                border: 1px solid black;
+                text-align: center;
+                padding: 5px;
+            }
+
+        .deep-blue {
+            background-color: #000080;
+            color: white;
+        }
+
+        .light-green {
+            background-color: #90EE90;
+        }
+
+        /*表数据*/
+        .green-bg {
+            background-color: lightgreen;
+        }
+
+        .white-bg {
+            background-color: white;
+        }
+
+        .red-bg {
+            background-color: red;
+        }
+
+        .yellow-bg {
+            background-color: yellow;
+        }
+
+        .white-text {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <table id="table_1">
+        <thead id="">
+            <tr id="title_one">
+                <th id="title_one_t1" colspan="23" class="deep-blue">各区域产量完成统计表</th>
+            </tr>
+            <tr class="light-green title_two">
+                <th rowspan="1">产量</th>
+                <th rowspan="2">
+                    可动率
+                    (%)
+                    目标
+                    98%
+                </th>
+                <th rowspan="2">
+                    目标<br>
+                    产量
+                </th>
+                <th rowspan="2">
+                    实际<br>
+                    产量
+                </th>
+                <th rowspan="2">差额</th>
+                <th colspan="6">白班</th>
+                <th colspan="6">二班</th>
+                <th colspan="6">三班</th>
+            </tr>
+            <tr class="light-green title_three">
+                <th rowspan="1">区域</th>
+                <th>
+                    计划<br>
+                    产量
+                </th>
+                <th>
+                    实际<br>
+                    产量
+                </th>
+                <th>差额</th>
+                <th>
+                    停台<br>
+                    类型
+                </th>
+                <th>
+                    停台<br>
+                    时间
+                </th>
+                <th>备注</th>
+                <th>
+                    计划<br>
+                    产量
+                </th>
+                <th>
+                    实际<br>
+                    产量
+                </th>
+                <th>差额</th>
+                <th>
+                    停台<br>
+                    类型
+                </th>
+                <th>
+                    停台<br>
+                    时间
+                </th>
+                <th>备注</th>
+                <th>
+                    计划<br>
+                    产量
+                </th>
+                <th>
+                    实际<br>
+                    产量
+                </th>
+                <th>差额</th>
+                <th>
+                    停台<br>
+                    类型
+                </th>
+                <th>
+                    停台<br>
+                    时间
+                </th>
+                <th>备注</th>
+            </tr>
+        </thead>
+        <tbody id="tbody_1">
+            <tr>
+                <td class="green-bg" rowspan="2">VBH</td>
+                <td class="white-bg" rowspan="2">100%</td>
+                <td class="white-bg" rowspan="2">1400</td>
+                <td class="white-bg" rowspan="2">1392</td>
+                <td class="yellow-bg" rowspan="2">-8</td>
+                <td class="white-bg" rowspan="2">500</td>
+                <td class="white-bg" rowspan="2">503</td>
+                <td class="green-bg" rowspan="2">3</td>
+                <td class="green-bg">设备</td>
+                <td class="white-bg">0</td>
+                <td class="white-bg text_cell"><div></div></td>
+                <td class="white-bg" rowspan="2">500</td>
+                <td class="white-bg" rowspan="2">483</td>
+                <td class="red-bg" rowspan="2">-17</td>
+                <td class="green-bg">设备</td>
+                <td class="white-bg">0</td>
+                <td class="white-bg text_cell"><div></div></td>
+                <td class="white-bg" rowspan="2">400</td>
+                <td class="white-bg" rowspan="2">406</td>
+                <td class="green-bg" rowspan="2">6</td>
+                <td class="green-bg">设备</td>
+                <td class="white-bg">0</td>
+                <td class="white-bg text_cell"><div></div></td>
+            </tr>
+            <tr>
+                <td class="green-bg">工艺</td>
+                <td class="white-bg">0</td>
+                <td class="white-bg text_cell"><div></div></td>
+                <td class="green-bg">工艺</td>
+                <td class="white-bg">0</td>
+                <td class="white-bg text_cell"><div></div></td>
+                <td class="green-bg">工艺</td>
+                <td class="white-bg">0</td>
+                <td class="white-bg text_cell"><div></div></td>
+            </tr>
+            <tr>
+                <td class="green-bg" rowspan="3">汇报项</td>
+                <td class="green-bg">白班</td>
+                <td class="white-bg tl" colspan="21">白天测试</td>
+            </tr>
+            <tr>
+                <td class="green-bg">二班</td>
+                <td class="white-bg tl" colspan="21">二班测试</td>
+            </tr>
+            <tr>
+                <td class="green-bg">三班</td>
+                <td class="white-bg tl" colspan="21">三班测试</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+```
+
+使用的技术栈是：JQuery，C#
+
+我需要把html中的table转化为Excel，最好用JQuery原生来实现。
+
+请给出详细的代码
