@@ -2062,3 +2062,34 @@ isnull ((t3.[val_shiftnum] - t3.[target_shiftnum]), 0)
 生产线实时状态页面
 
 报警信息页面
+
+
+
+#### 问题15 热能班次查询
+
+```txt
+name 能源点名称
+area 区域
+stepval 能源累计增量
+hourbegintime 合计
+timestamp 时戳
+```
+
+```txt
+SELECT [name]
+	+ CASE
+		WHEN [type] = 'c' THEN '冷水'
+		WHEN [type] = 'h' THEN '高温水'
+		ELSE '采暖水'
+		END AS [name],
+	area,
+	stepval,
+	CONVERT(VARCHAR(100), [timestamp], 120) AS 'timestamp'
+FROM es_heatenergyrecord
+WHERE (@date IS NULL OR DATEDIFF(dd, @date, [timestamp]) >= 0)
+AND (@date IS NULL OR DATEDIFF(dd, [timestamp], @date) >= 0)
+AND (@area = '' OR area = @area)
+AND (@tag = '' OR tag = @tag)
+ORDER BY area, [name], [timestamp]
+```
+
