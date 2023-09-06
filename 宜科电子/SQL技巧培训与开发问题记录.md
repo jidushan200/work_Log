@@ -284,6 +284,39 @@ WHERE t.Num = 1
 
 
 
+#### FOR XML PATH使用：
+
+将多行内容合并成字符串
+举例：
+
+```sql
+DECLARE @t TABLE([ID] INT,  [Name]  NVARCHAR (10))
+INSERT INTO @t ([ID], [Name]) VALUES('1', '爬山')
+INSERT INTO @t ([ID], [Name]) VALUES('2', '游泳')
+INSERT INTO @t ([ID], [Name]) VALUES('3', '美食')
+SELECT * FROM @t FOR XML PATH('')
+SELECT * FROM @t FOR XML PATH('ROW')
+SELECT STUFF((SELECT ',' + [Name] FROM @t FOR XML PATH('')), 1,1,'')
+```
+
+
+
+#### CROSS APPLY和OUTER APPLY 使用：
+
+对左表做逐行计算，然后用计算结果与左表连接
+```sql
+DECLARE @t TABLE([ID] INT,  [ColorList]  NVARCHAR (50))
+INSERT INTO @t ([ID], [ColorList]) VALUES('1', '白色,红色,绿色')
+INSERT INTO @t ([ID], [ColorList]) VALUES('2', NULL)
+INSERT INTO @t ([ID], [ColorList]) VALUES('3', '灰色,黄色,橙色')
+SELECT t.[ID], t.[ColorList], t1.[Color] FROM @t t
+     CROSS APPLY (SELECT [value] AS 'Color' FROM STRING_SPLIT (t.[ColorList], ',')) t1
+SELECT t.[ID], t.[ColorList], t1.[Color] FROM @t t
+     OUTER APPLY (SELECT [value] AS 'Color' FROM STRING_SPLIT (t.[ColorList], ',')) t1
+```
+
+
+
 #### 游标使用：
 
 游标可以对结果集的行进行单独操作，一般会用到的是本地、动态游标。游标会占用资源，用后需要关闭和释放。
@@ -660,6 +693,8 @@ select @Curve 'Curve'
 ```sql
 set @Curve = (select distinct [code] + ',' from tm_datatag where 1=0 for xml path(''))
 ```
+
+
 
 
 
