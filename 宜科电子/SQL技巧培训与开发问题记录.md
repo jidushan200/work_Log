@@ -48,7 +48,7 @@ PIVOT进行行列转换
   SELECT * FROM @tb_test
 ```
 
-
+OBJECT_ID()——该方法用于查找#temp是否存在，并提供返回值
 
 ```sql
 IF OBJECT_ID ('tempdb..#temp') IS NOT NULL
@@ -59,8 +59,6 @@ INTO #temp
 FROM @items.nodes ('/root/item') AS T (C)    --提取xml解析结果存入临时表
 SELECT * FROM #temp                      --显示
 ```
-
-
 
 
 
@@ -135,7 +133,18 @@ select right('abcdefg', 2)
 
 举例：
 转换日期时间为字符串格式
-CONVERT (NVARCHAR (20), getdate(), 120)    返回：2006-05-16 10:57:49
+
+```sql
+CONVERT (NVARCHAR (20), getdate(), 120)    
+--返回：2023-09-06 16:45:18
+```
+
+```sql
+select CONVERT (NVARCHAR (10), getdate(), 120)
+--返回：2023-09-06
+```
+
+##### 注意：NVARCHAR (10) 和 NVARCHAR (20)定义的变量长度不同，可以起到截取日期的作用，而不是记忆后面的 120，120这个位置的参数太多不好记，用裁剪的方式简单很多。
 
 
 
@@ -143,7 +152,10 @@ CONVERT (NVARCHAR (20), getdate(), 120)    返回：2006-05-16 10:57:49
 
 举例：
 保留两位小数
+
+```sql
 select Convert(numeric(18,2),1.3 / 0.3)    返回：4.33
+```
 
 
 
@@ -160,8 +172,11 @@ enddate： 结束日期，必须可转换为DateTime
 当起始日期 晚于 结束日期时，返回值< 0
 返回值等于按比较粒度相减后的差值
 举例：
+
+```sql
 SELECT DATEDIFF(dd,'2008-12-29','2008-12-31')  返回值：2
 SELECT DATEDIFF(dd,'2008-12-31','2008-12-29')  返回值：-2
+```
 
 
 
