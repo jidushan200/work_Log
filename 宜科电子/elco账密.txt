@@ -31,7 +31,8 @@ Mes2020
 佛山中控 新svn
 https://192.168.60.68:8443/svn/GRJ2109_FoShanFawVwCentraControlSystem
 jingjing.wu wu123
-suzhen.wu wu123
+suzhen.wei wei123
+hongjin.zhu Zhu123456
 
 远程密码：
 windows密码：123

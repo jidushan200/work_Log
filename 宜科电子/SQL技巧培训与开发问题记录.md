@@ -178,27 +178,38 @@ SELECT DATEDIFF(dd,'2008-12-29','2008-12-31')  返回值：2
 SELECT DATEDIFF(dd,'2008-12-31','2008-12-29')  返回值：-2
 ```
 
+##### 注意：再使用datediff方法的时候，索引失效。若想使用，要用 [datetime字段] > 数值 / [datetime字段] < 数值 的形式
+
+##### 另外：使用视图的时候，也会导致索引失效（但是，在目前(2023年9月7日08:35:20) 这个时间点的时候，因为工厂数据量不算大，所以也不用考虑索引的问题，视图仍然是好用的很）
+
 
 
 #### 在SQL脚本里获得存储过程返回的数据集
 
 使用Insert Into，将存储过程返回的数据行保存到表变量，临时表字段定义必须与返回数据的字段一致，这是唯一的方法。
 举例：
-  DECLARE @t TABLE
-             (
-                table_qualifier    VARCHAR (100),
-                table_owner        VARCHAR (20),
-                table_name         VARCHAR (100),
-                table_type         VARCHAR (50),
-                remarks            TEXT
-             )
-  INSERT INTO @t (table_qualifier,
-                  table_owner,
-                  table_name,
-                  table_type,
-                  remarks)
-  EXEC sp_tables
-  SELECT * FROM @t
+
+```sql
+DECLARE @t TABLE
+           (
+              table_qualifier    VARCHAR (100),
+              table_owner        VARCHAR (20),
+              table_name         VARCHAR (100),
+              table_type         VARCHAR (50),
+              remarks            TEXT
+           )
+
+INSERT INTO @t (table_qualifier,
+                table_owner,
+                table_name,
+                table_type,
+                remarks)
+EXEC sp_tables
+
+SELECT * FROM @t
+```
+
+
 
 ##### string_split分割字符串为临时数据表
 
