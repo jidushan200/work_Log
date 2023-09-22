@@ -223,18 +223,21 @@ inner join (select value 'paramModel' from string_split(@modelcode,','))
 
 #### 强制锁表：
 
+```sql
 不同线程同时对多个表写入时，防止死锁和数据混乱。
 强制排它锁必须处于Transaction中间，COMMIT或ROLLBACK将是释放表锁
 举例：
 SELECT *
 FROM role WITH (TABLOCKX)
 WHERE 1 = 0
+```
 
 
 
 #### left join和right join：
 
 举例：
+  ```sql
   DECLARE @tabperson TABLE(  [personname]    NVARCHAR (50),  [addr]          NVARCHAR (50))
   INSERT INTO @tabperson ([personname], [addr])  VALUES ('张三', '和平区')
   INSERT INTO @tabperson ([personname], [addr])  VALUES ('李四', '南开区')
@@ -243,9 +246,10 @@ WHERE 1 = 0
   INSERT INTO @tabmac ([macname], [addr])  VALUES ('食品街餐厅', '和平区')
   INSERT INTO @tabmac ([macname], [addr])  VALUES ('大悦城餐厅', '和平区')
   INSERT INTO @tabmac ([macname], [addr])  VALUES ('永旺餐厅', '西青区')
-
+  
   SELECT *  FROM @tabperson t1 LEFT JOIN @tabmac t2 ON t1.[addr] = t2.[addr]
   SELECT *  FROM @tabperson t1 RIGHT JOIN @tabmac t2 ON t1.[addr] = t2.[addr]
+  ```
 
 
 
@@ -253,6 +257,8 @@ WHERE 1 = 0
 
 用group by子句的分类字段进行数据进行分类汇总，用函数grouping()识别数据列是否正被聚合统计
 举例：
+
+```sql\
 DECLARE @tabscore TABLE
                   ([name]     NVARCHAR (10),  [addr]     NVARCHAR (10),  [sex]      NVARCHAR (10),   [class]    NVARCHAR (10),   [score]    NUMERIC (18, 2))
 INSERT INTO @tabscore ([name], [addr], [sex], [class], [score]) VALUES ('赵飞燕', '和平区', '女', '1班', 96)
@@ -277,6 +283,7 @@ FROM @tabscore
 GROUP BY [class], [addr], [sex] WITH ROLLUP
 --HAVING grouping(addr) = 1  --只出班级小计
 --HAVING grouping(class) = 1  --只出总计
+```
 
 
 
@@ -285,6 +292,7 @@ GROUP BY [class], [addr], [sex] WITH ROLLUP
 ##### partition  by用于给结果集分组排序
 
 举例：
+```sql
 DECLARE @tabscore TABLE
                   ([name]     NVARCHAR (10),  [addr]     NVARCHAR (10),  [sex]      NVARCHAR (10),   [class]    NVARCHAR (10),   [score]    NUMERIC (18, 2))
 INSERT INTO @tabscore ([name], [addr], [sex], [class], [score]) VALUES ('赵飞燕', '和平区', '女', '1班', 96)
@@ -307,6 +315,7 @@ FROM (SELECT *,
              Row_Number () OVER (PARTITION BY [sex] ORDER BY [score]) AS 'Num'
       FROM @tabscore) t
 WHERE t.Num = 1
+```
 
 
 
