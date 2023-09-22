@@ -358,7 +358,7 @@ SELECT t.[ID], t.[ColorList], t1.[Color] FROM @t t
 例子1：
 
 ```sql
-DECLARE  cur_test CURSOR FOR SELECT [id] FROM [user]                          --声明游标
+DECLARE  cur_test CURSOR FOR SELECT [id] FROM [user]                    --声明游标
 OPEN cur_test                                                           --打开游标
 DECLARE @str   NVARCHAR (3000)
 SET @str = ''
@@ -370,8 +370,8 @@ BEGIN
    FETCH NEXT FROM cur_test   INTO @ID
 END
 CLOSE cur_test                                                          --关闭游标
-DEALLOCATE cur_test                                               --释放游标资源
-SELECT CASE WHEN len (@str) > 0 THEN left (@str, len (@str) - 1) END  --去除最后的逗号
+DEALLOCATE cur_test                                                     --释放游标资源
+SELECT CASE WHEN len (@str) > 0 THEN left (@str, len (@str) - 1) END    --去除最后的逗号
 ```
 
 例子2：
